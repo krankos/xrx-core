@@ -12,12 +12,13 @@ logger = logging.getLogger(__name__)
 
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY", '')
 ELEVENLABS_VOICE_ID = os.getenv('ELEVENLABS_VOICE_ID', '')
-ELEVENLABS_MODEL_ID = os.getenv('ELEVENLABS_MODEL_ID', 'eleven_turbo_v2.5')
+ELEVENLABS_VOICE_LANGUAGE = os.getenv('ELEVENLABS_VOICE_LANGUAGE', 'en')
+ELEVENLABS_MODEL_ID = os.getenv('ELEVENLABS_MODEL_ID', 'eleven_turbo_v2_5')
 ELEVENLABS_VOICE_STABILITY = float(os.getenv('ELEVENLABS_VOICE_STABILITY', '0.9'))
 ELEVENLABS_VOICE_SIMILARITY = float(os.getenv('ELEVENLABS_VOICE_SIMILARITY', '0.9'))
 TTS_SAMPLE_RATE = os.getenv('TTS_SAMPLE_RATE', '24000')
 
-elevenlabs_endpoint = f"wss://api.elevenlabs.io/v1/text-to-speech/{ELEVENLABS_VOICE_ID}/stream-input?output_format=pcm_{TTS_SAMPLE_RATE}"
+elevenlabs_endpoint = f"wss://api.elevenlabs.io/v1/text-to-speech/{ELEVENLABS_VOICE_ID}/stream-input?output_format=pcm_{TTS_SAMPLE_RATE}&language_code={ELEVENLABS_VOICE_LANGUAGE}&model_id={ELEVENLABS_MODEL_ID}"
 
 CACHE_DIR = "cache"
 os.makedirs(CACHE_DIR, exist_ok=True)
